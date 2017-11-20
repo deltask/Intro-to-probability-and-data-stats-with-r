@@ -1,0 +1,186 @@
+---
+title: "Exploring the BRFSS data"
+
+output: 
+  html_document: 
+    fig_height: 4
+    highlight: pygments
+    theme: spacelab
+---
+
+## Setup
+
+### Load packages
+
+```{r load-packages, message = FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+### Load data
+
+Make sure your data and R Markdown files are in the same directory. When loaded
+your data file will be called `brfss2013`. Delete this note when before you submit 
+your work. 
+
+```{r load-data}
+load("brfss2013.RData")
+```
+
+
+
+* * *
+
+## Part 1: Data
+  The Behavioral Risk Factor Surveillance System (BRFSS) is a collaborative project between all of the states in the United States (US) and participating US territories and the Centers for Disease Control and Prevention (CDC).
+The BRFSS was initiated in 1984, with 15 states collecting surveillance data on risk behaviors through monthly telephone interviews. Over time, the number of states participating in the survey increased; by 2001, 50 states, the District of Columbia, Puerto Rico, Guam, and the US Virgin Islands were participating in the BRFSS. Today, all 50 states, the District of Columbia, Puerto Rico, and Guam collect data annually and American Samoa, Federated States of Micronesia, and Palau collect survey data over a limited point- in-time (usually one to three months). In this document, the term "state" is used to refer to all areas participating in BRFSS, including the District of Columbia, Guam, and the Commonwealth of Puerto Rico.
+The BRFSS objective is to collect uniform, state-specific data on preventive health practices and risk behaviors that are linked to chronic diseases, injuries, and preventable infectious diseases that affect the adult population. Factors assessed by the BRFSS in 2013 include tobacco use, HIV/AIDS knowledge and prevention, exercise, immunization, health status, healthy days - health-related quality of life, health care access, inadequate sleep, hypertension awareness, cholesterol awareness, chronic health conditions, alcohol consumption, fruits and vegetables consumption, arthritis burden, and seatbelt use. 
+
+Now lets look at the important aspects.
+What is this data about.
+
+this data refers to adult citizens of US. They share insights about all the aspects related to their medical heath. The data is very detailed and it takes note of all minor aspects that could affect the medical health.
+A total of 330 variables are studied for each patient. These variables range from the phone number to the eating habits of the person. person
+
+Why is this data collected?
+This data is useful for BRFSS for studying and analysing factors responsible for chronic diseases, injuries and preventabel infectious dieases. 
+This is a collaborative project with the CDC( Centers for Disease Control and Prevention)  and all the states of the us.cities
+
+How is this data collected?
+This data is collected through surveys. These surveys are undertaken through the landline telephones and cellular  telephones. 
+Landline telephones : A adult is randomly selected from a household.
+Cellular telephones : Adult Residents of private housing or college housing
+
+A questionairre is used for the survey. The questionairre is developed in collaboration with the  CDC and public health
+departments in each of the states, the District of Columbia, Puerto Rico, and the U.S. Virgin Islands.
+Data derived from the questionnaire provide health departments, public health officials
+and policymakers with behavioral information that, when combined with mortality and morbidity
+statistics, inform public health officials as they establish health-related policies and priorities as
+well as address and assess strategies to promote good health. 
+
+Questionairre Construction:
+  A Annual Standard Core: These are the question that are included every year and must be asked by all states. The questions relate to the emerging helath issues.
+After a year they are either discontinued or incorporated into the fixed core, rotating core, or optional modules. 
+
+Rotating Core: The portion of the questionnaire asked by all states on an every other year basis.
+Optional Modules :  Sets of standardized questions on various topics that each state may select
+and include in its questionnaire. Once selected, a module must be used in its entirety and asked
+of all eligible respondents. If an optional module is modified in any way (e.g., if a question is
+                                                                           omitted), then the questions will be treated as state-added questions. Usually such questions refer to the aspects that are unique to a state.abb
+
+State added Questions :States are encouraged to gather data on additional topics related to
+their specific health priorities through the use of extra questions they choose to add to their
+questionnaire. All questions included in the BRFSS are cognitively tested prior to inclusion in
+the questionnaire. 
+
+#SAMPLING DESIGN
+
+In orderto conduct the BRFSS, states obtain samples of telephone numbers from CDC. States then review their sampling methodology with a state statistician and CDC to make sure data collection procedures are in place to follow the methodology. If any change in sampling methodology is considered, states consult with CDC before making changes. 
+The BRFSS uses two samples: one for landline telephone respondents and one for cellular telephone respondents.
+
+**The Landline Sample**
+Disproportionate stratified sampling (DSS) has been used for the landline sample since 2003.DDS draws telephone numbers from two strata (lists) that are based on the presumed density ofknown telephone household numbers.
+The sample size of each stratum does not have to be proportionate to the population size of the stratum.
+In this design, telephone numbers are classified into strata
+that are either high density (listed 1+ block telephone numbers) or medium density (not listed 1+ block telephone numbers) to yield residential telephone numbers. Telephone numbers in the high density stratum are sampled at the highest rate. The rate at which each stratum is sampled is called the sampling rate. The ratio of the sampling rate of one stratum to sampling rate of a reference stratum is called the sampling ratio. For BRFSS the landline sampling ratio of high to medium density is 1:1.5. 
+
+**The Cellular Phone sample**
+The cellular telephone sample is randomly generated from a sampling frame of confirmed cellular area code and prefix combinations. Cellular telephone respondents are randomly selected with each having equal probability of selection.
+
+#Scope of inference
+The BRFSS study is of an observational nature. It employs stratified sampling design based on random digit dialing methods. To ensure smaller states are provided adequate sample sizes, many states resort to sample disproportionately from strata that correspond to sub state regions.
+
+
+#Generalizability
+It is clearly evident that the surevy must be generic to all non-institutionalized adults (18 or more)
+
+#Causality
+Well observational studies are not enough evidence for suggesting causal relationships. It is experimental studies that enjoy this privilege.
+
+
+
+* * *
+
+## Part 2: Research questions
+
+**Research quesion 1:**
+  1. Financial Aspect 
+  As per the TIME(http://time.com/money/3611885/healthcare-costs-insurance-delaying-care/) (2014), one third of the americans are scared of visiting the doctor due to lack of money.
+  Hence, using these data I want to corroborate and check out for myself. So, my main objective is:
+  What proportion of people have a poor general health & do not have enough money 
+  Also is there an association between poor general health and financial capacity? (genhlth,medcost)
+
+**Research quesion 2:**
+    We do know that physical activity and a proper diet with vegetables and fruits are the major contributers for a good health.
+    Lets try to find out the relationship between these two for adults. Also lets see if there is an association between the exercise, diet and general health.
+    A point to note is that a perfect balance of these 2 factors(eating habits,exercise) are necessary for a good health.
+  
+    
+
+**Research quesion 3:**
+      Smoking is not advised for a perfect health. So lets see the effects of these 2 factors over the general health. Lets see how they affect the general health.
+       Does smoking affect general health??
+
+
+* * *
+
+## Part 3: Exploratory data analysis
+
+
+**Research quesion 1:**
+
+```{r}
+brfss2013 %>% filter(genhlth == "Poor") %>% select(genhlth,hlthpln1,medcost) %>% group_by(genhlth) %>% summarise(count = n()/nrow(brfss2013))
+rq1_poor<- brfss2013 %>% select(genhlth,medcost,hlthpln1) %>% filter(genhlth == "Poor")
+rq1_poor %>% summarise(count = n()/nrow(brfss2013))
+rq1_poor %>% filter(medcost == "Yes" & hlthpln1 == "No") %>% summarise(count = n()/nrow(rq1_poor))
+p4 <- ggplot(data = subset(brfss2013, (!is.na(genhlth) & (!is.na(medcost)))), aes(x = genhlth, fill = medcost)) +  geom_bar(aes(y = ((..count..) * 100 /sum(..count..))))
+p4 <- p4 + xlab("General Health Categories") + ylab("Percents") + ggtitle("Relationship between the different categories of general health and the affordability of medical costs")
+p4
+```
+
+The output is 0.05683697.
+Which means 5.68% of the total population are poor.
+Lets see how many of these poor health  people can't afford the medical cost and do not have insurance'
+So lets take a seperate variable and store all the relevant data of the poor health people and name it rq1_poor
+This means around 9.1 % of the people with poor health are unable to go to the doctors due to lasck of money and health insurance.
+When compared with the total population in the dataset, a 0.51% people suffer from poor health due to lack of funds and insurance.
+As the article in Time had suggested one third, my research doesn not agree with that. One possible reason may be due to the fact that the 
+artic;e is of 2014 and this data is of 2013. Also several other factors may have been influential like the method of sampling could have caused this bias.
+
+The plot is quite logical. It suggests that there is a very small proportion of people not visiting doctors due to costs.
+Also, since this proportion is not too large in the poor health category no inferences can be made.
+Though there may be several other reasons that may make the picture clearer.
+
+
+
+**Research quesion 2:**
+
+```{r}
+p4 <- ggplot(data = subset(brfss2013, (!is.na(genhlth) & (!is.na(X_paindx1)))), aes(x = genhlth, fill = X_paindx1)) +  geom_bar(aes(y = ((..count..) * 100 /sum(..count..))))
+p4 <- ggplot(data = subset(brfss2013, (!is.na(X_frutsum) & (!is.na(X_vegesum)) & !is.na(genhlth))), aes(x = X_frutsum, y = X_vegesum)) +  geom_path(aes(color = genhlth ))
+p4 + xlab("Total fruits consumed") +ylab("Total Vegetables Consumed") +ggtitle("Relationship between the fruits, vegetables consumed and the general health")
+```
+
+The first plot refers to the exercise and the second one refers to the amount of vegetables and fruits consumed.
+(The plot takes a little bit of time). Also zoom the plot for better understanding.
+As one can see, the there is a positive association between the fruits,veggies and general health.
+The poor health area is highlighted in pink and shows that they do consume less amount of veggies and fruits.
+This proportion rate goes on increasing with the better quality of health. As only few people have excellent health, the red color is not that easily visible. But one can notice that it is prominent in the areas where both the veggies and fruits are high.
+This association could also occur due to sheer luck or may be a result of severe other factors that were not considered.
+
+
+**Research quesion 3:**
+
+```{r}
+p4 <- ggplot(data = subset(brfss2013, (!is.na(genhlth) & (!is.na(smoke100)))), aes(x = genhlth, fill = factor(smoke100, levels = c("Yes", "No")))) +  geom_bar(aes(y = ((..count..) * 100 /sum(..count..))))
+p4 <- p4 + xlab("General Health Categories") + ylab("Percents") + ggtitle("Relationship between the different categories of general health and smoking habits")
+p4 <- p4 + guides(fill = guide_legend(title = "Smoked atleast 100 cigarettes"))
+p4
+```
+
+It is clearly evident that the more than half of the people having poor health have smoked atleast 100 ciggarettes.
+While this proportion factors goes on decreasing as the health quality increases. So there is a negative association of smoking on health.
+There may be other factors also that may have contributed to this, such as the alcohol consumption, lack of exercise , food habits ,etc.
+
+
